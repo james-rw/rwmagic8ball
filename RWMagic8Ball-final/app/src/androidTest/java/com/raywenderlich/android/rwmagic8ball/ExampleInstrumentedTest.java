@@ -1,26 +1,48 @@
 package com.raywenderlich.android.rwmagic8ball;
 
-import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
-
+import org.junit.ClassRule;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
-import static org.junit.Assert.*;
+import androidx.test.rule.ActivityTestRule;
+import tools.fastlane.screengrab.FalconScreenshotStrategy;
+import tools.fastlane.screengrab.Screengrab;
+import tools.fastlane.screengrab.locale.LocaleTestRule;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 /**
  * Instrumented test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-@RunWith(AndroidJUnit4.class)
+@RunWith(JUnit4.class)
 public class ExampleInstrumentedTest {
-  @Test
-  public void useAppContext() {
-    // Context of the app under test.
-    Context appContext = InstrumentationRegistry.getTargetContext();
 
-    assertEquals("com.raywenderlich.android.rwmagic8ball", appContext.getPackageName());
+  @ClassRule
+  public static final LocaleTestRule localeTestRule = new LocaleTestRule();
+
+  @Rule
+  public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class, false, false);
+
+  @Test
+  public void testTakeScreenshot() {
+    activityRule.launchActivity(null);
+    Screengrab.setDefaultScreenshotStrategy(new FalconScreenshotStrategy(activityRule.getActivity()));
+
+    onView(withId(R.id.askButton)).check(matches(isDisplayed()));
+
+    Screengrab.screenshot("rwmagic8ball_beforeFabClick");
+
+    onView(withId(R.id.askButton)).perform(click());
+
+    Screengrab.screenshot("rwmagic8ball_afterFabClick");
   }
+
 }
