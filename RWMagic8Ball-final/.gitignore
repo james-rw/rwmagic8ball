@@ -14,3 +14,7 @@
 /build
 /captures
 .externalNativeBuild
+
+# fastlane output
+fastlane/metadata/android/screenshots.html
+fastlane/metadata/android/phoneScreenshots/
