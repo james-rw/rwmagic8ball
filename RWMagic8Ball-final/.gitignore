@@ -18,3 +18,9 @@
 # fastlane output
 fastlane/metadata/android/screenshots.html
 fastlane/metadata/android/phoneScreenshots/
+
+# Firebase output
+.firebaserc
+database.rules.json
+firebase.json
+app/google-services.json
