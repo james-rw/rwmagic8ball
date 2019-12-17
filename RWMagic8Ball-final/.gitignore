@@ -18,6 +18,7 @@
 # fastlane output
 fastlane/metadata/android/screenshots.html
 fastlane/metadata/android/phoneScreenshots/
+fastlane/report.xml
 
 # Firebase output
 .firebaserc
