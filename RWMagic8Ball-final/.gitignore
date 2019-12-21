@@ -77,11 +77,6 @@ fastlane/readme.md
 !/.idea/copyright/
 !/.idea/compiler.xml
 
-# fastlane output
-fastlane/metadata/android/screenshots.html
-fastlane/metadata/android/phoneScreenshots/
-fastlane/report.xml
-
 # Firebase output
 .firebaserc
 database.rules.json
