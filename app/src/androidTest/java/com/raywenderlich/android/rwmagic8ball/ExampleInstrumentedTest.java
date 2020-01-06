@@ -36,8 +36,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import android.support.test.rule.ActivityTestRule;
-import tools.fastlane.screengrab.FalconScreenshotStrategy;
 import tools.fastlane.screengrab.Screengrab;
+import tools.fastlane.screengrab.UiAutomatorScreenshotStrategy;
 import tools.fastlane.screengrab.locale.LocaleTestRule;
 
 import static android.support.test.espresso.Espresso.onView;
@@ -58,7 +58,7 @@ public class ExampleInstrumentedTest {
   @Test
   public void testTakeScreenshot() {
     activityRule.launchActivity(null);
-    Screengrab.setDefaultScreenshotStrategy(new FalconScreenshotStrategy(activityRule.getActivity()));
+    Screengrab.setDefaultScreenshotStrategy(new UiAutomatorScreenshotStrategy());
 
     onView(withId(R.id.askButton)).check(matches(isDisplayed()));
 
